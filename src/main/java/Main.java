@@ -13,7 +13,6 @@ import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
 
-// TODO: Auto-generated Javadoc
     /** The Class SuperCalculator. */
     public class Main extends JFrame {
         /** The Constant serialVersionUID. */
