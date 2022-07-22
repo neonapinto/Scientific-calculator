@@ -9,6 +9,7 @@ import javax.swing.JFrame;
 
 /** The Class SuperCalculator. */
     public class Main extends JFrame {
+
         public static void main(String[] args) {
             EventQueue.invokeLater(
                     new Runnable() {
