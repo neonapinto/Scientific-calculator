@@ -8,7 +8,7 @@ public class Integral {
 
     public static void main(String[] args) {
         Formatter f1 = new Formatter();
-       double ans = integral(0, 1, 2, 43,  new Function() {
+       double ans = integral(0, 1, 2, 43,  new BetaFunction() {
             @Override
             public double f(double x, double p, double q) {
                 return (Math.pow(x, (p - 1))) * (Math.pow((1-x), (q-1)));
@@ -22,7 +22,7 @@ public class Integral {
         return 0;
     }
 
-    public static double integral(double a, double b, double p, double q,  Function function) {
+    public static double integral(double a, double b, double p, double q,  BetaFunction function) {
         double area = 0;
         double modifier = 1;
         if(a > b) {
@@ -35,6 +35,6 @@ public class Integral {
             double dFromA = i - a;
             area += (INCREMENT / 2) * (function.f(a + dFromA, p, q) + function.f(a + dFromA - INCREMENT, p, q));
         }
-        return (Math.round(area * 1000.0) / 1000.0) * modifier;
+        return ((area * 1000.0) / 1000.0) * modifier;
     }
 }

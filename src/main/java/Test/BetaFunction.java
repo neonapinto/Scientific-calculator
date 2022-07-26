@@ -1,5 +1,5 @@
 package Test;
 
-public interface Function {
+public interface BetaFunction {
     double f(double x, double p, double q);
 }
