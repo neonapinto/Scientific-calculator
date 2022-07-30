@@ -6,16 +6,17 @@ import java.util.Formatter;
 public class Integral {
 
     public static void main(String[] args) {
-        ExponentialFunction Exponent = new ExponentialFunction();
+        ExponentFunction Exponent = new ExponentFunction();
         Formatter f1 = new Formatter();
        double ans = integral(0, 1, 2.5, 43.3,  new BetaFunction() {
             @Override
             public double f(double x, double p, double q) {
 //                return (Exponent.calculate(x, (p - 1))) * (Exponent.calculate((1-x), (q-1)));
-                return (ExponentialFunction.power(x, (p - 1))) * (ExponentialFunction.power((1-x), (q-1)));
+                return (ExponentFunction.calculateResult(x, (p - 1))) * (ExponentFunction.calculateResult((1-x), (q-1)));
+//                return (Math.pow(x, (p - 1))) * (Math.pow((1-x), (q-1)));
             }
         });
-       f1.format("%.10f", ans);
+       f1.format("%.8f", ans);
        System.out.println(f1);
     }
 
