@@ -1,26 +1,24 @@
 package controller;
-
 import constants.Constants;
+
 import java.util.Formatter;
 
+/**
+ * Class to calculate the Beta function B(x,y)
+ * @author Neona Pinto
+ */
 public class Integral {
 
-    public static void main(String[] args) {
-        ExponentFunction Exponent = new ExponentFunction();
-        Formatter f1 = new Formatter();
-       double ans = integral(0, 1, 2.5, 43.3,  new BetaFunction() {
-            @Override
-            public double f(double x, double p, double q) {
-//                return (Exponent.calculate(x, (p - 1))) * (Exponent.calculate((1-x), (q-1)));
-                return (ExponentFunction.calculateResult(x, (p - 1))) * (ExponentFunction.calculateResult((1-x), (q-1)));
-//                return (Math.pow(x, (p - 1))) * (Math.pow((1-x), (q-1)));
-            }
-        });
-       f1.format("%.8f", ans);
-       System.out.println(f1);
-    }
-
-    public static double integral(double a, double b, double p, double q,  BetaFunction function) {
+    /**
+     * Calculating the intergral function for performing the Beta function B(x,y) = ∫ 0 to 1 (t ^ p-1 * (1-t) ^ q-1)dt
+     * @param a is the start limit
+     * @param b is the end limit
+     * @param p part of the beta function
+     * @param q part of the beta function
+     * @param function function within the integral
+     * @return the result of the integration
+     */
+    public double integral(double a, double b, double p, double q,  IntegrationFunction function) {
         double area = 0;
         double modifier = 1;
         if(a > b) {
@@ -31,8 +29,28 @@ public class Integral {
         }
         for(double i = a + Constants.INCREMENT; i < b; i += Constants.INCREMENT) {
             double dFromA = i - a;
-            area += (Constants.INCREMENT / 2) * (function.f(a + dFromA, p, q) + function.f(a + dFromA - Constants.INCREMENT, p, q));
+            area += (Constants.INCREMENT / 2) * (function.func(a + dFromA, p, q) + function.func(a + dFromA - Constants.INCREMENT, p, q));
         }
         return ((area * 1000.0) / 1000.0) * modifier;
+    }
+
+    /**
+     * function to run the Beta function
+     * @param x x value
+     * @param y y value
+     */
+    public double BetaFunction(double x, double y){
+        Integral integral_obj = new Integral();
+        double ans = -1;
+        Formatter f1 = new Formatter();
+        if(x > 0 && y > 0){
+            ans = integral_obj.integral(0, 1, x, y, (x1, p, q) -> (ExponentFunction.calculateResult(x1, (p - 1))) * (ExponentFunction.calculateResult((1- x1), (q-1))));
+            f1.format("%.7f", ans);
+            System.out.println("B(" + x + "," + y + ") = ∫ 0 to 1 ((t ^ " + x +  "-1) * (1-t) ^ (" + y + "-1))dt \n" + f1);
+        }
+        else {
+            System.out.println("Please enter positive values for x and y.");
+        }
+        return ans;
     }
 }

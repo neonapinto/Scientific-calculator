@@ -1,187 +1,74 @@
 package view;
 
-import javax.swing.*;
-import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import controller.Integral;
+import java.math.BigDecimal;
+import java.util.Scanner;
 
-public class UserView extends JFrame{
-    /** The Constant serialVersionUID. */
-    private static final long serialVersionUID = 1L;
-    /** The text field input. */
-    private static JTextField textFieldInput;
-    /** The button zero. */
-    private JButton buttonZero;
-    /** buttonOne. */
-    private JButton buttonOne;
-    /** buttonTwo. */
-    private JButton buttonTwo;
-    /** buttonThree. */
-    private JButton buttonThree;
-    /** buttonFour. */
-    private JButton buttonFour;
-    /** buttonFive. */
-    private JButton buttonFive;
-    /** buttonSix. */
-    private JButton buttonSix;
-    /** buttonSeven. */
-    private JButton buttonSeven;
-    /** buttonEight. */
-    private JButton buttonEight;
-    /** buttonNine. */
-    private JButton buttonNine;
-
-
-
-    /** Instantiates a new super calculator. */
-    public UserView() {
-        setResizable(true);
-        setFont(new Font("Dialog", Font.BOLD, 14));
-        setTitle("Super Calculator");
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setBounds(300, 300, 515, 415);
-        getContentPane().setLayout(null);
-
-        textFieldInput = new JTextField();
-        textFieldInput.setHorizontalAlignment(SwingConstants.RIGHT);
-        textFieldInput.setFont(new Font("Tahoma", Font.BOLD, 20));
-        textFieldInput.setBounds(21, 35, 472, 35);
-        textFieldInput.setBorder(null);
-        getContentPane().add(textFieldInput);
-        textFieldInput.setColumns(10);
-
-        buttonZero = new JButton("0");
-        buttonZero.addActionListener(
-                new ActionListener() {
-                    public void actionPerformed(ActionEvent e) {
-                        textFieldInput.setText(textFieldInput.getText() + "0");
-                    }
-                });
-        buttonZero.setFont(new Font("Tahoma", Font.BOLD, 20));
-        buttonZero.setBounds(21, 290, 56, 35);
-        getContentPane().add(buttonZero);
-
-        buttonOne = new JButton("1");
-        buttonOne.addActionListener(
-                new ActionListener() {
-                    public void actionPerformed(ActionEvent e) {
-                        textFieldInput.setText(textFieldInput.getText() + "1");
-                    }
-                });
-        buttonOne.setFont(new Font("Tahoma", Font.BOLD, 20));
-        buttonOne.setBounds(21, 235, 56, 35);
-        getContentPane().add(buttonOne);
-
-        buttonTwo = new JButton("2");
-        buttonTwo.addActionListener(
-                new ActionListener() {
-                    public void actionPerformed(ActionEvent e) {
-                        textFieldInput.setText(textFieldInput.getText() + "2");
-                    }
-                });
-        buttonTwo.setFont(new Font("Tahoma", Font.BOLD, 20));
-        buttonTwo.setBounds(87, 235, 56, 35);
-        getContentPane().add(buttonTwo);
-
-        buttonThree = new JButton("3");
-        buttonThree.addActionListener(
-                new ActionListener() {
-                    public void actionPerformed(ActionEvent e) {
-                        textFieldInput.setText(textFieldInput.getText() + "3");
-                    }
-                });
-        buttonThree.setFont(new Font("Tahoma", Font.BOLD, 20));
-        buttonThree.setBounds(153, 235, 56, 35);
-        getContentPane().add(buttonThree);
-
-        buttonFour = new JButton("4");
-        buttonFour.addActionListener(
-                new ActionListener() {
-                    public void actionPerformed(ActionEvent e) {
-                        textFieldInput.setText(textFieldInput.getText() + "4");
-                    }
-                });
-        buttonFour.setFont(new Font("Tahoma", Font.BOLD, 20));
-        buttonFour.setBounds(21, 187, 56, 35);
-        getContentPane().add(buttonFour);
-
-        buttonFive = new JButton("5");
-        buttonFive.addActionListener(
-                new ActionListener() {
-                    public void actionPerformed(ActionEvent e) {
-                        textFieldInput.setText(textFieldInput.getText() + "5");
-                    }
-                });
-        buttonFive.setFont(new Font("Tahoma", Font.BOLD, 20));
-        buttonFive.setBounds(87, 187, 56, 35);
-        getContentPane().add(buttonFive);
-
-        buttonSix = new JButton("6");
-        buttonSix.addActionListener(
-                new ActionListener() {
-                    public void actionPerformed(ActionEvent e) {
-                        textFieldInput.setText(textFieldInput.getText() + "6");
-                    }
-                });
-        buttonSix.setFont(new Font("Tahoma", Font.BOLD, 20));
-        buttonSix.setBounds(153, 187, 56, 35);
-        getContentPane().add(buttonSix);
-
-        buttonSeven = new JButton("7");
-        buttonSeven.addActionListener(
-                new ActionListener() {
-                    public void actionPerformed(ActionEvent e) {
-                        textFieldInput.setText(textFieldInput.getText() + "7");
-                    }
-                });
-        buttonSeven.setFont(new Font("Tahoma", Font.BOLD, 20));
-        buttonSeven.setBounds(21, 141, 56, 35);
-        getContentPane().add(buttonSeven);
-
-        buttonEight = new JButton("8");
-        buttonEight.addActionListener(
-                new ActionListener() {
-                    public void actionPerformed(ActionEvent e) {
-                        textFieldInput.setText(textFieldInput.getText() + "8");
-                    }
-                });
-        buttonEight.setFont(new Font("Tahoma", Font.BOLD, 20));
-        buttonEight.setBounds(87, 141, 56, 35);
-        getContentPane().add(buttonEight);
-
-        buttonNine = new JButton("9");
-        buttonNine.addActionListener(
-                new ActionListener() {
-                    public void actionPerformed(ActionEvent e) {
-                        textFieldInput.setText(textFieldInput.getText() + "9");
-                    }
-                });
-        buttonNine.setFont(new Font("Tahoma", Font.BOLD, 20));
-        buttonNine.setBounds(153, 141, 56, 35);
-        getContentPane().add(buttonNine);
-    }
-
-    public JTextField getTextFieldInput(){
-        return this.textFieldInput;
-    }
-
-
-    /**
-     * Checks if input is a Number.
-     *
-     * @param inputDataString the inputDataString
-     * @return true, if the input is a real number
-     */
-    public static boolean numericInputCheck(String inputDataString) {
-        return true;
+/**
+ * Class for the User Cli for the user
+ * @author  Neona Pinto
+ */
+public class UserView{
+    public static boolean numericInputCheck(double x, double y) {
+        try {
+            if(x >0 && y > 0) {
+                return true;
+            }
+        } catch (NumberFormatException e) {
+            return false;
+        }
+        return false;
     }
 
     /**
-     * Arithmetic operation.
-     *
-     * @param str the str
+     * driver to run the cli
      */
-    public void arithmeticOperation(String str) {
+    public static void runFunction() {
+        Integral integral = new Integral();
+        int input;
+        do{
 
+            System.out.println("--------------------------------------------------- \n" +
+                    "Welcome to the Beta function calculator!");
+            Scanner sc = new Scanner(System.in);
+            System.out.println("""
+                    Enter what you would like to choose:
+                    1.Perform Beta Function B(x,y):
+                    2.Get information on Beta function.\s
+                    3.Quit.""");
+            input = sc.nextInt();
+            switch (input) {
+                case 1 -> {
+                    System.out.println("Enter the value of x:");
+                    double x = sc.nextDouble();
+                    System.out.println("Enter the value of y:");
+                    double y = sc.nextDouble();
+                    if (numericInputCheck(x, y)) {
+                        integral.BetaFunction(x, y);
+                    } else {
+                        System.out.println("Please enter valid inputs");
+                    }
+                }
+                case 2 -> System.out.println("""
+                        Beta Function is also known as Euler Integral of the first kind. Beta Function can also be expressed in terms of the gamma function. It is a function of two variables that are usually expressed as improper integrals.\s
+                        It is equal to the quotient of the product of the values of the gamma function at each variable.
+                        Example:
+                        Calculate the Beta Function for the given details.
+                        X – value (x) = 5
+                        Y - value (y) = 10
+                        Solution:
+                        Apply Formula:
+                        B(x,y) = ∫0 to 1 (t ^ x-1 * (1-t) ^ y-1 )dt
+                        Beta Value (β) = 0.0000999""");
+                case 3 -> {
+                    System.out.println("Thank you for using the beta calculator.");
+                    return;
+                }
+                default -> System.out.println("Enter a valid choice.");
+            }
+
+        }while(input < 3);
     }
+
+
 }

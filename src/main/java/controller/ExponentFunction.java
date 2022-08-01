@@ -1,6 +1,16 @@
 package controller;
 
+/**
+ * Class to calculate the Exponent function
+ * @author Neona Pinto
+ */
 public class ExponentFunction {
+    /**
+     * Caculaate the result based on all test cases
+     * @param x base
+     * @param y power
+     * @return the power of x ^ y
+     */
     public static double calculateResult(double x, double y) {
         double minusY = y;
         double result = 1;
@@ -30,21 +40,14 @@ public class ExponentFunction {
                 if(y < 0) {
 
                     minusY = -1 * y;
-
                     double root = findRoot(x, minusY);
-
                     String xRoot = String.format("%.5f", root);
                     root = Double.parseDouble(xRoot);
-
                     result = 1 / root;
-
 
                     //positive fraction power
                 }else if(y >= 0) {
-
-
                     double root = findRoot(x, minusY);
-
                     String xString = String.format("%.5f", root);
                     root = Double.parseDouble(xString);
                     result = root;
@@ -62,58 +65,45 @@ public class ExponentFunction {
      * @return the root of the base argument
      */
     static double findRoot(double base, double power) {
-
         double resultOfRoot = 1;
-
         if(power >= 1) {
             double[] exponentialValue = findExponentialValue(base, power);
-
             resultOfRoot *= exponentialValue[0];
             power = exponentialValue[1];
-
         }
-
         //fraction power remaining
         if(power > 0 && power < 1) {
-
             //formatting up to 5 decimal places
-            String xString = String.format("%.5f", power);
+            String xString = String.format("%.7f", power);
             power = Double.parseDouble(xString);
-
             double[] fraction = getFractionPart(power);
-
             double denominator = root(base, fraction[1]);
-
             resultOfRoot *= findExponentialValue(denominator, fraction[0]*fraction[1])[0];
         }
-
         return resultOfRoot;
     }
 
     /**
      * Returns the array with fraction part
      *
-     * @param num
+     * @param num number for which to get fraction
      *
      * @return the array of fraction parts
      */
     public static double[] getFractionPart(double num) {
-        double numerator = num;
         double denominator = 1;
-
-        while(!((numerator * denominator) % 1 == 0))
+        while(!((num * denominator) % 1 == 0))
         {
             denominator++;
         }
-        double[] parts = {numerator, denominator};
-        return parts;
+        return new double[]{num, denominator};
     }
 
     /**
      * Returns the closestRoot with precision
      *
-     * @param base
-     * @param denominator
+     * @param base base for exponent
+     * @param denominator for the exponent
      *
      * @return the closest root
      */
@@ -125,17 +115,16 @@ public class ExponentFunction {
             precision *= 0.1;
             closestRoot = findClosestRootWithPrecision(base, denominator, closestRoot, precision);
         }
-
         return closestRoot;
     }
 
     /**
      * Returns the closest root with precision
      *
-     * @param base
-     * @param power
-     * @param closestRoot
-     * @param precision
+     * @param base for exponent
+     * @param power for exponent
+     * @param closestRoot closest value to the root
+     * @param precision range of precision
      *
      * @return the closest root with precision
      */
@@ -150,16 +139,13 @@ public class ExponentFunction {
     }
 
     /**
-     * Returns the exponential value
-     *
-     * @param base
-     * @param power
-     *
+     * Returns the exponential value for the base and power
+     * @param base for the exponent
+     * @param power for the exponent
      * @return the parts of exponential value
      */
     public static double[] findExponentialValue(double base, double power) {
         double result = 1;
-
         while(power > 0) {
             result *= base;
             power--;
@@ -167,7 +153,6 @@ public class ExponentFunction {
                 break;
             }
         }
-        double[] parts = {result , power};
-        return parts;
+        return new double[]{result , power};
     }
 }
