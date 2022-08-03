@@ -1,7 +1,7 @@
 package view;
 
 import controller.Integral;
-import java.math.BigDecimal;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 /**
@@ -39,13 +39,18 @@ public class UserView{
             input = sc.nextInt();
             switch (input) {
                 case 1 -> {
-                    System.out.println("Enter the value of x:");
-                    double x = sc.nextDouble();
-                    System.out.println("Enter the value of y:");
-                    double y = sc.nextDouble();
-                    if (numericInputCheck(x, y)) {
-                        integral.BetaFunction(x, y);
-                    } else {
+                    try{
+                        System.out.println("Enter the value of x:");
+                        double x = sc.nextDouble();
+                        System.out.println("Enter the value of y:");
+                        double y = sc.nextDouble();
+                        if (numericInputCheck(x, y)) {
+                            integral.BetaFunction(x, y);
+                        } else {
+                            System.out.println("Please enter valid inputs");
+                        }
+                    }
+                    catch(InputMismatchException e){
                         System.out.println("Please enter valid inputs");
                     }
                 }

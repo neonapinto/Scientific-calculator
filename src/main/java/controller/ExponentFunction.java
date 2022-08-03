@@ -15,43 +15,28 @@ public class ExponentFunction {
         double minusY = y;
         double result = 1;
 
-        //CASE 1: negative base values with fraction powers
-        if(x < 0 && y % 1 != 0) {
-            System.out.println("Error: Negative base can not have non-integer powers");
-            result = 0;
-        }else {
-
-            //CASE 2: Power is a positive integer
-            if(y % 1 == 0 && y > 0) {
-                for(int i = 1; i <= y; i++) {
-                    result *= x;
-                }
-                //CASE 3: Power is a negative integer
-            }else if(y < 0 && y % 1 == 0) {
-
+        //CASE 1: Power is a positive integer
+        if(y % 1 == 0 && y > 0) {
+            for(int i = 1; i <= y; i++) {
+                result *= x;
+            }
+        }
+        //CASE 2: Power is a fraction e.g. square root, cube root etc.
+        else if(y % 1 != 0) {
+            //negative fraction power
+            if(y < 0) {
                 minusY = -1 * y;
                 double root = findRoot(x, minusY);
+                String xRoot = String.format("%.10f", root);
+                root = Double.parseDouble(xRoot);
                 result = 1 / root;
 
-                //CASE 4: Power is a fraction e.g. square root, cube root etc.
-            }else if(y % 1 != 0) {
-
-                //negative fraction power
-                if(y < 0) {
-
-                    minusY = -1 * y;
-                    double root = findRoot(x, minusY);
-                    String xRoot = String.format("%.5f", root);
-                    root = Double.parseDouble(xRoot);
-                    result = 1 / root;
-
-                    //positive fraction power
-                }else if(y >= 0) {
-                    double root = findRoot(x, minusY);
-                    String xString = String.format("%.5f", root);
-                    root = Double.parseDouble(xString);
-                    result = root;
-                }
+                //positive fraction power
+            }else if(y >= 0) {
+                double root = findRoot(x, minusY);
+                String xString = String.format("%.10f", root);
+                root = Double.parseDouble(xString);
+                result = root;
             }
         }
         return result;
@@ -73,8 +58,8 @@ public class ExponentFunction {
         }
         //fraction power remaining
         if(power > 0 && power < 1) {
-            //formatting up to 5 decimal places
-            String xString = String.format("%.7f", power);
+            //formatting up to 10 decimal places
+            String xString = String.format("%.10f", power);
             power = Double.parseDouble(xString);
             double[] fraction = getFractionPart(power);
             double denominator = root(base, fraction[1]);
