@@ -14,7 +14,7 @@ public class ExponentTest extends ExponentFunction {
      */
     @Test
     public void zeroPowerofZero() {
-        assertEquals(1.0, calculateResult(0, 0), 0);
+        assertEquals(Math.pow(0,0), calculateResult(0, 0), 0);
     }
 
     /**
@@ -23,7 +23,7 @@ public class ExponentTest extends ExponentFunction {
      */
     @Test
     public void zeroPowerofRealNumber() {
-        assertEquals(0.0, calculateResult(0, 3), 0);
+        assertEquals(Math.pow(0,3), calculateResult(0, 3), 0);
     }
 
     /**
@@ -32,7 +32,7 @@ public class ExponentTest extends ExponentFunction {
      */
     @Test
     public void positiveNumberPowerofZero() {
-        assertEquals(1.0, calculateResult(7, 0), 0);
+        assertEquals(Math.pow(7,0), calculateResult(7, 0), 0);
     }
 
     /**
@@ -41,7 +41,7 @@ public class ExponentTest extends ExponentFunction {
      */
     @Test
     public void negativeNumberPowerofZero() {
-        assertEquals(1.0, calculateResult(-4, 0), -1);
+        assertEquals(Math.pow(-4,0), calculateResult(-4, 0), -1);
     }
 
     /**
@@ -49,7 +49,7 @@ public class ExponentTest extends ExponentFunction {
      */
     @Test
     public void positiveNumberPowerofOne() {
-        assertEquals(7.0, calculateResult(7, 1), 0);
+        assertEquals(Math.pow(7,1), calculateResult(7, 1), 0);
     }
 
     /**
@@ -57,22 +57,7 @@ public class ExponentTest extends ExponentFunction {
      */
     @Test
     public void positiveNumberPowerofPositiveNumber() {
-        assertEquals(1953125.0, calculateResult(5, 9), 0);
+        assertEquals(Math.pow(5,9), calculateResult(5, 9), 0);
     }
 
-    /**
-     * Test Case 7: Test cases for Requirement : test if X(Negative Number)
-     */
-    @Test
-    public void negativeNumberPowerofPositiveEvenNumber() {
-        assertEquals(81, calculateResult(-3, 4), -1);
-    }
-
-    /**
-     * Test Case 8: Test cases for Requirement : test if X(Negative Number)
-     */
-    @Test
-    public void negativeNumberPowerofPositiveOddNumber() {
-        assertEquals(-729, calculateResult(-9, 3), 0);
-    }
 }

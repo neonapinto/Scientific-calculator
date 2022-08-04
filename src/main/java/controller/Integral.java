@@ -36,7 +36,6 @@ public class Integral {
         double ans = -1;
         if(x > 0 && y > 0){
             ans = integral_obj.integral(0, 1, x, y, (x1, p, q) -> (ExponentFunction.calculateResult(x1, (p - 1))) * (ExponentFunction.calculateResult((1- x1), (q-1))));
-//          ans = integral_obj.integral(0, 1, x, y, (x1, p, q) -> (Math.pow(x1, (p - 1))) * (Math.pow((1- x1), (q-1))));
             System.out.println("B(" + x + "," + y + ") = ∫ 0 to 1 ((t ^ " + x +  "-1) * (1-t) ^ (" + y + "-1))dt \n" + ans);
         }
         else {

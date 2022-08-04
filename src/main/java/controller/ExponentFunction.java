@@ -6,66 +6,58 @@ package controller;
  */
 public class ExponentFunction {
     /**
-     * Caculaate the result based on all test cases
+     * Calculate the result based on all test cases
      * @param x base
      * @param y power
      * @return the power of x ^ y
      */
-    public static double calculateResult(double x, double y) {
-        double minusY = y;
+    public static  double calculateResult(double x, double y) {
         double result = 1;
-
-        //CASE 1: Power is a positive integer
-        if(y % 1 == 0 && y > 0) {
-            for(int i = 1; i <= y; i++) {
+        double roots =1;
+        double base_value =x;
+        double power_value =y;
+        // Power is integer simply multiply and return result
+        if(power_value % 1 == 0)
+        {
+            for(int counter = 1; counter <= power_value; counter++)
+            {
                 result *= x;
             }
         }
-        //CASE 2: Power is a fraction e.g. square root, cube root etc.
-        else if(y % 1 != 0) {
-            //negative fraction power
-            if(y < 0) {
-                minusY = -1 * y;
-                double root = findRoot(x, minusY);
-                String xRoot = String.format("%.10f", root);
-                root = Double.parseDouble(xRoot);
-                result = 1 / root;
-
-                //positive fraction power
-            }else if(y >= 0) {
-                double root = findRoot(x, minusY);
-                String xString = String.format("%.10f", root);
-                root = Double.parseDouble(xString);
-                result = root;
+        // Power is a decimal number
+        else{
+            // If power is greater than 1
+            if(power_value >= 1)
+            {
+                double[] exponentialValue = findExponentialValue(base_value, power_value);
+                roots *= exponentialValue[0];
+                power_value = exponentialValue[1];
             }
+            // If power is >0 and <1
+            if(power_value>0 && power_value<1)
+            {
+                //updating power value up-to 8 decimal points
+                String doubleString = String.format("%.8f", power_value);
+                power_value = Double.parseDouble(doubleString);
+                // now we work on the fractional part
+                double den;
+                for(den=1; power_value*den%1!=0;den++)
+                {
+                    continue;
+                }
+                double precision = 1;
+                double findroot = findClosestRoot(base_value, den, 0, precision);
+                while(base_value < findExponentialValue(findroot, den)[0] && precision > 0.000001) {
+                    findroot -= precision;
+                    precision *= 0.1;
+                    findroot = findClosestRoot(base_value, den, findroot, precision);
+                }
+                double value = findExponentialValue(findroot, power_value * den)[0];
+                roots *= value;
+            }
+            result = roots;
         }
         return result;
-    }
-
-    /**
-     * Returns the root of the base value
-     *
-     * @param base whose power is to be calculated
-     * @param power the exponent value
-     * @return the root of the base argument
-     */
-    static double findRoot(double base, double power) {
-        double resultOfRoot = 1;
-        if(power >= 1) {
-            double[] exponentialValue = findExponentialValue(base, power);
-            resultOfRoot *= exponentialValue[0];
-            power = exponentialValue[1];
-        }
-        //fraction power remaining
-        if(power > 0 && power < 1) {
-            //formatting up to 10 decimal places
-            String xString = String.format("%.10f", power);
-            power = Double.parseDouble(xString);
-            double[] fraction = getFractionPart(power);
-            double denominator = root(base, fraction[1]);
-            resultOfRoot *= findExponentialValue(denominator, fraction[0]*fraction[1])[0];
-        }
-        return resultOfRoot;
     }
 
     /**
@@ -94,11 +86,11 @@ public class ExponentFunction {
      */
     public static double root(double base, double denominator) {
         double precision = 1;
-        double closestRoot = findClosestRootWithPrecision(base, denominator, 0, precision);
+        double closestRoot = findClosestRoot(base, denominator, 0, precision);
         while(base < findExponentialValue(closestRoot, denominator)[0] && precision > 0.0000000000001) {
             closestRoot -= precision;
             precision *= 0.1;
-            closestRoot = findClosestRootWithPrecision(base, denominator, closestRoot, precision);
+            closestRoot = findClosestRoot(base, denominator, closestRoot, precision);
         }
         return closestRoot;
     }
@@ -113,7 +105,7 @@ public class ExponentFunction {
      *
      * @return the closest root with precision
      */
-    public static double findClosestRootWithPrecision(double base, double power, double closestRoot, double precision) {
+    public static double findClosestRoot(double base, double power, double closestRoot, double precision) {
         closestRoot +=precision;
         double[] temp = findExponentialValue(closestRoot, power);
         while(temp[0] < base) {
@@ -130,14 +122,14 @@ public class ExponentFunction {
      * @return the parts of exponential value
      */
     public static double[] findExponentialValue(double base, double power) {
-        double result = 1;
+        double exponent_val = 1;
         while(power > 0) {
-            result *= base;
+            exponent_val = exponent_val * base;
             power--;
             if(power < 1) {
                 break;
             }
         }
-        return new double[]{result , power};
+        return new double[]{exponent_val , power};
     }
 }
