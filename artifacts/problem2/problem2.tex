@@ -1,0 +1,182 @@
+
+\documentclass[letterpaper, 11pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{titlesec}
+\usepackage{fullpage} % changes the margin
+\usepackage{graphicx} %package to manage images
+\graphicspath{ {./images/} }
+
+\begin{document}
+
+\begin{titlepage}
+\vspace*{0.7in}
+\begin{center}
+\begin{figure}[htb]
+\begin{center}
+\includegraphics[width=8cm]{univ_logo}
+\end{center}
+\end{figure}
+\vspace*{0.3in}
+\begin{Large}
+\textbf{SOEN 6011 : SOFTWARE ENGINEERING PROCESSES} \\
+\end{Large}
+\vspace*{0.1in}
+\begin{Large}
+\textbf{SUMMER 2022} \\
+\end{Large}
+\vspace*{0.9in}
+\begin{Large}
+\textbf{Eternity} \\
+\end{Large}
+\vspace*{0.625in}
+\begin{Large} 
+
+
+\textbf{PROBLEM - 2} \\
+\vspace*{0.2in}
+Requirements
+\vspace*{0.1in}
+\\\footnotesize{ISO/IEC/IEEE} 29148 Standard \\
+\end{Large}
+\vspace*{0.625in}
+\rule{80mm}{0.1mm}\\
+\vspace*{0.1in}
+\begin{large}
+Author \\
+\vspace*{0.1in}
+Neona Sheetal Pinto\\
+\vspace*{1.0in}
+\date{\normalsize\today} 
+\end{large}
+\end{center}
+\begin{center}
+https://www.overleaf.com/project/62e938922b3937446fb7f547\end{center}
+\end{titlepage}
+
+\tableofcontents
+
+\newpage
+\section{{PROBLEM 2 - F6: $B(x,y)$}}
+    \subsection{Assumption:} 
+        To compute the value of the Beta function, we can estimate the value of the definite integral using numerical methods.
+    \subsection{Requirements:}
+        The current section describes the requirements to implement the function $B(x, y)$.
+
+        \subsubsection{\textbf{Requirement Id : R1}}
+            \begin{tabular}{ll}
+                \textbf{Id} & R1 \\
+                \textbf{Overview} & $B(x,y)$, where x, y $\in R, x, y > 0.$ \\
+                \textbf{Version} & 1.0 \\
+                \textbf{Description} & 
+                \begin{tabular}[c]{@{}l@{}} The Beta function can give output only if both x, y values \\
+                entered by user are positive real numbers.
+            \end{tabular} \\
+                \textbf{Priority} & High \\
+                \textbf{Type} & Functional \\
+                \textbf{Difficulty} & High \\
+                \textbf{Verification} & UserInput\_numericInputCheckTest\_1\\
+            \end{tabular}
+            
+        \subsubsection{\textbf{Requirement Id : R2}}
+            \begin{tabular}{ll}
+                \textbf{Id} & R2 \\
+                \textbf{Overview} & ${\displaystyle \mathrm {B} (x,y)=\int _{0}^{1}t^{x-1}(1-t)^{y-1}\,dt}$\\
+                \textbf{Version} & 1.0 \\
+                \textbf{Description} & 
+                \begin{tabular}[c]{@{}l@{}} To compute the value of Beta function for any real number
+                \\we need to be able to compute definite integral as 
+                \\defined in the mathematical realm of calculus.
+            \end{tabular} \\
+                \textbf{Priority} & High \\
+                \textbf{Type} & Functional \\
+                \textbf{Difficulty level} & Medium \\
+                \textbf{Verification} & Integral\_testBetaFunctionWithDoubleValues\_2\\
+            \end{tabular}
+
+        \subsubsection{\textbf{Requirement Id : R3}}
+            \begin{tabular}{ll}
+                \textbf{Id} & R3 \\
+                \textbf{Overview} & To calculate Beta function, exponent function $A^B$ is required.\\
+                \textbf{Version} & 1.0 \\
+                \textbf{Description} & 
+                \begin{tabular}[c]{@{}l@{}} To calculate the Beta function, a subordinate function 
+                \\needs to be used to calculate the value A raised to the power B.
+            \end{tabular} \\
+                \textbf{Priority} & High \\
+                \textbf{Type} & Functional \\
+                \textbf{Difficulty level} & Medium \\
+                \textbf{Verification} &Exponent\_positiveNumberPowerofPositiveNumber\_3\\
+            \end{tabular}
+
+        \subsubsection{\textbf{Requirement Id : R4}}
+            \begin{tabular}{ll}
+                \textbf{Id} & R4 \\
+                \textbf{Overview} & Accuracy\\
+                \textbf{Version} & 1.0 \\
+                \textbf{Description} & 
+                \begin{tabular}[c]{@{}l@{}} To accurately compute the value of Beta function,
+                \\for large inputs of x and y, we need to have the ability to
+                \\store large numbers.
+            \end{tabular} \\
+                \textbf{Priority} & High \\
+                \textbf{Type} & Non-Functional \\
+                \textbf{Difficulty level} & Medium \\
+            \end{tabular}
+        \subsubsection{\textbf{Requirement Id : R5}}
+            \begin{tabular}{ll}
+                 \textbf{Id} & R5 \\
+                \textbf{Overview} & Scalable \\ 
+                \textbf{Version} & 1.0 \\
+                \textbf{Description} & 
+                \begin{tabular}[c]{@{}l@{}} The method used to calculate the Beta function, should be 
+                \\scalable for different input values and hardware requirements.\\
+            \end{tabular} \\
+                \textbf{Priority} & High \\
+                \textbf{Type} & Functional \\
+                \textbf{Difficulty level} & Medium \\
+            \end{tabular}
+
+         \subsubsection{\textbf{Requirement Id : R6}}
+            \begin{tabular}{ll}
+             \textbf{Id} & R6 \\
+            \textbf{Overview} & Performance  \\
+            \textbf{Version} & 1.0 \\
+            \textbf{Description} & 
+            \begin{tabular}[c]{@{}l@{}} The method used for the Beta function, should be optimized 
+            \\for performance so that if efficiently calculates the integral 
+            \\for large inputs values. \\
+            \end{tabular} \\
+            \textbf{Priority} & High \\
+            \textbf{Type} & Functional \\
+            \textbf{Difficulty level} & Medium \\
+            \end{tabular}
+                 
+        \subsubsection{\textbf{Requirement Id : R7}}
+            \begin{tabular}{ll}
+             \textbf{Id} & R7 \\
+            \textbf{Overview} & Usability  \\
+            \textbf{Version} & 1.0 \\
+            \textbf{Description} & 
+            \begin{tabular}[c]{@{}l@{}} The command Line Interface is user friendly,\\ guiding the user step by step how to move about. Error messages are understandable.\\ The application is easy to use and friendly.
+            \end{tabular} \\
+            \textbf{Priority} & High \\
+            \textbf{Type} & Functional \\
+            \textbf{Difficulty level} & Easy \\
+            \end{tabular}
+\\
+\section{Annexure:}
+    \begin{itemize}
+      \item \textbf{Trello Board :} \textit{https://trello.com/eternity119}
+      \item \textbf{Code Version Control :} \textit{https://github.com/neonapinto/Scientific\_calculator}
+      \item \textbf{Overleaf :} \textit{https://www.overleaf.com/project/62e938922b3937446fb7f547}
+    \end{itemize}
+        
+\begin{thebibliography}{}
+\bibitem{ReqView} 
+ReqView : Nykamp DQ: Requirements Specification Templates
+\\\texttt{https://www.reqview.com/doc/iso-iec-ieee-29148-templates}
+\bibitem{29148} 
+29148-2018-ISO/IEC/IEEE International Standard-Systems and software engineering-Life cycle processes-Requirements engineering,
+\\\texttt{https://standards.ieee.org/standard/29148-2018.html}
+\end{thebibliography}
+\end{document}
