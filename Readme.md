@@ -16,3 +16,6 @@ means individual work and by means communal work.
 ➲ The work on the project has been organized into a number of constraints that you need to observe during the project, and problems for which you need to provide solutions.
 
 ➲ The project work includes proper technical writing in several places throughout the duration of the project.
+
+➲ The project work includes proper technical writing in several places throughout the duration of the project.
+
