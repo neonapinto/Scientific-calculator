@@ -9,7 +9,7 @@ import static org.junit.Assert.*;
  */
 public class UserInputTest extends UserView {
     /**
-     * Test 1: input test for different types of input
+     * Test 1: input test for different types of input Requirement R1 and R7
      */
     @Test
     public void numericInputCheckTest() {

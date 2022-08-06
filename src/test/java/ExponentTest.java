@@ -7,9 +7,16 @@ import static org.junit.Assert.*;
  * @author  Neona Pinto
  */
 public class ExponentTest extends ExponentFunction {
+    /**
+     * Test Case 1: Test cases for Requirement 3: test if X(Positive Number)
+     */
+    @Test
+    public void positiveNumberPowerofPositiveNumber() {
+        assertEquals(Math.pow(5,9), calculateResult(5, 9), 0);
+    }
 
     /**
-     * Test Case 1: cases for Requirement 1:  test if X(0) to the power of
+     * Test Case 2: cases for Requirement 3:  test if X(0) to the power of
      * Y(0)=1.0
      */
     @Test
@@ -18,7 +25,7 @@ public class ExponentTest extends ExponentFunction {
     }
 
     /**
-     * Test Case 2:  Test cases for Requirement 2: test if X(0) to the power of
+     * Test Case 3:  Test cases for Requirement 3: test if X(0) to the power of
      * Y(Real Number)=0.0
      */
     @Test
@@ -27,7 +34,7 @@ public class ExponentTest extends ExponentFunction {
     }
 
     /**
-     * Test Case 3:  Test cases for Requirement 3:  test if X(Positive Number)
+     * Test Case 4:  Test cases for Requirement 3:  test if X(Positive Number)
      * to the power of Y(0)=1.0
      */
     @Test
@@ -36,7 +43,7 @@ public class ExponentTest extends ExponentFunction {
     }
 
     /**
-     * Test Case 4: Test cases for Requirement 4:  test if X(Negative Number)
+     * Test Case 5: Test cases for Requirement 3:  test if X(Negative Number)
      * to the power of Y (0)=1.0
      */
     @Test
@@ -45,19 +52,11 @@ public class ExponentTest extends ExponentFunction {
     }
 
     /**
-     * Test Case 5: Test cases for Requirement 5: test if X(Positive Number)
+     * Test Case 6: Test cases for Requirement 3: test if X(Positive Number)
      */
     @Test
     public void positiveNumberPowerofOne() {
         assertEquals(Math.pow(7,1), calculateResult(7, 1), 0);
-    }
-
-    /**
-     * Test Case 6: Test cases for Requirement 6: test if X(Positive Number)
-     */
-    @Test
-    public void positiveNumberPowerofPositiveNumber() {
-        assertEquals(Math.pow(5,9), calculateResult(5, 9), 0);
     }
 
 }
