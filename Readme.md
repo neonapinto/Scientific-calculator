@@ -2,7 +2,7 @@
 ### SOEN-6011 course project
 
 
-##### Project Description
+##### Description
 
 ➲ This is medium-sized scientific software engineering project for developing a calculator to calculate Beta function.
 
